@@ -1,0 +1,24 @@
+<template>
+  <div class="p-4">
+    <Navbar />
+    <h1 class="text-2xl font-bold mb-4">HR Dashboard</h1>
+    <ReviewForm @submitted="loadReviews" />
+    <hr class="my-4" />
+    <ReviewList :reviews="reviews" />
+  </div>
+</template>
+<script setup>
+import { ref, onMounted } from 'vue';
+import { getReviews } from '../api/reviews.js';
+import Navbar from '../components/Navbar.vue';
+import ReviewForm from '../components/ReviewForm.vue';
+import ReviewList from '../components/ReviewList.vue';
+
+const reviews = ref([]);
+
+async function loadReviews() {
+  reviews.value = await getReviews();
+}
+
+onMounted(loadReviews);
+</script>
