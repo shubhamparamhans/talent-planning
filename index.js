@@ -2,7 +2,9 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import { performanceReviewHandler } from './services/mcpResolver.js';
+import { connectDB } from './db/connect.js';
 
+connectDB(); 
 dotenv.config();
 const app = express();
 app.use(express.json());

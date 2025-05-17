@@ -1,5 +1,7 @@
 import { PerformanceContext } from '../contextSchemas/performanceContext.js';
 import { runPerformanceReviewer } from '../agents/performanceReviewerAgent.js';
+import PerformanceReview from '../models/PerformanceReview.js';
+
 
 export async function performanceReviewHandler(req, res) {
   try {
@@ -8,7 +10,8 @@ export async function performanceReviewHandler(req, res) {
 
     const context = parsed.data;
     const result = await runPerformanceReviewer(context);
-    return res.json({ result });
+    const saved = await PerformanceReview.create({ ...context, result: JSON.parse(result) });
+    return res.json({ review_id: saved._id, result: saved.result });
   } catch (err) {
     console.error(err);
     return res.status(500).json({ error: 'Internal Server Error' });
