@@ -9,6 +9,9 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
+const authRouter = require('./auth');
+app.use('/api', authRouter);
+
 app.post('/api/review', performanceReviewHandler);
 
 app.listen(3000, () => {
