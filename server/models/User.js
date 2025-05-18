@@ -5,7 +5,9 @@ const userSchema = new mongoose.Schema({
   name: String,
   email: { type: String, unique: true },
   phone: String,
-  role: String,
+  role: { type: String, default: 'employee' }, // Inferred role
+  jobTitle: String,
+  skills: [String],
   experience_years: Number,
   organizationId: mongoose.Schema.Types.ObjectId,
   resumeUrl: String // ⬅️ Store uploaded resume path
