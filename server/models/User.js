@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema({
   phone: String,
   role: String,
   experience_years: Number,
-  organizationId: mongoose.Schema.Types.ObjectId
+  organizationId: mongoose.Schema.Types.ObjectId,
+  resumeUrl: String // ⬅️ Store uploaded resume path
 });
 export default mongoose.models.User || mongoose.model('User', userSchema);
