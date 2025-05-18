@@ -2,7 +2,7 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
-import User from './models/User.js';
+import User from '../models/User.js';
 
 
 const auth = express.Router();
@@ -42,6 +42,7 @@ export function authMiddleware(req, res, next) {
 }
 
 // Placeholder agent endpoints to scaffold later
+`
 router.get('/agents/performance-review', authMiddleware, (req, res) => res.json({ message: 'PerformanceReviewerAgent coming soon' }));
 router.get('/agents/skill-gap', authMiddleware, (req, res) => res.json({ message: 'SkillGapAgent coming soon' }));
 router.get('/agents/promotion-advice', authMiddleware, (req, res) => res.json({ message: 'PromotionAdvisorAgent coming soon' }));
@@ -50,6 +51,6 @@ router.get('/agents/retention-risk', authMiddleware, (req, res) => res.json({ me
 router.get('/agents/career-path', authMiddleware, (req, res) => res.json({ message: 'CareerPathAgent coming soon' }));
 router.get('/agents/team-fit', authMiddleware, (req, res) => res.json({ message: 'TeamFitAgent coming soon' }));
 router.get('/agents/feedback-summary', authMiddleware, (req, res) => res.json({ message: '360FeedbackSummarizerAgent coming soon' }));
-
+`
 
 export default auth;
