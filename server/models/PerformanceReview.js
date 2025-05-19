@@ -1,38 +1,32 @@
 import mongoose from 'mongoose';
 
-const KPISchema = new mongoose.Schema({
+const CompetencySchema = new mongoose.Schema({
   name: String,
-  score: Number,
-  target: Number,
+  rating: { type: Number, min: 1, max: 5 },
   comments: String
 });
 
-const FeedbackSchema = new mongoose.Schema({
-  from_person: String,
-  relationship: String,
-  comment: String,
-  sentiment: {
-    type: String,
-    enum: ['positive', 'neutral', 'negative']
-  }
-});
-
-const MilestoneSchema = new mongoose.Schema({
-  title: String,
-  achieved_on: String,
-  description: String
+const GoalSchema = new mongoose.Schema({
+  description: String,
+  targetDate: Date,
+  status: { type: String, enum: ['not_started', 'in_progress', 'completed'] },
+  progress: { type: Number, min: 0, max: 100 }
 });
 
 const PerformanceReviewSchema = new mongoose.Schema({
-  employee_id: String,
-  name: String,
-  role: String,
-  period: String,
-  kpis: [KPISchema],
-  feedback: [FeedbackSchema],
-  milestones: [MilestoneSchema],
-  previous_rating: Number,
-  result: Object, // AI generated summary, rating, etc.
+  employeeId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  reviewerId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  reviewCycle: String,
+  reviewPeriodStart: Date,
+  reviewPeriodEnd: Date,
+  status: { type: String, enum: ['draft', 'submitted', 'reviewed', 'finalized'], default: 'draft' },
+  overallRating: { type: Number, min: 1, max: 5 },
+  competencies: [CompetencySchema],
+  strengths: String,
+  areasForImprovement: String,
+  goals: [GoalSchema],
+  employeeComments: String,
+  reviewerComments: String
 }, { timestamps: true });
 
-export default mongoose.model('PerformanceReview', PerformanceReviewSchema);
+export default mongoose.models.PerformanceReview || mongoose.model('PerformanceReview', PerformanceReviewSchema);

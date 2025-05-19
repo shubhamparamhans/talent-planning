@@ -1,7 +1,10 @@
 // --- Step 2: server/index.js ---
 import express from 'express';
 import dotenv from 'dotenv';
-import { performanceReviewHandler, skillGapHandler, careerPathHandler } from './services/mcpResolver.js';
+import reviewRoutes from './services/reviews.js';
+import feedbackRoutes from './services/feedback.js';
+import skillsRoutes from './services/skills.js';
+import employeeSkillsRoutes from './services/employeeSkills.js';
 import { connectDB } from './db/connect.js';
 import authRoutes from './services/auth.js';
 import resumeRoutes from './services/resume.js';
@@ -22,12 +25,11 @@ app.use('/api/resume', resumeRoutes);
 app.use('/api/hierarchy', hierarchyRoutes);
 app.use('/api/org', orgRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/reviews', reviewRoutes);
+app.use('/api/feedback', feedbackRoutes);
+app.use('/api/skills', skillsRoutes);
+app.use('/api/users/:userId/skills', employeeSkillsRoutes);
 app.use('/api/agents', agentRoutes);
-
-app.post('/api/review', performanceReviewHandler);
-app.post('/api/skillgap', skillGapHandler);
-app.get('/api/skillgaps/:employeeId', skillGapHandler);
-app.post('/api/career-path', careerPathHandler);
 
 app.listen(3000, () => {
   console.log('Server running on http://localhost:3000');
