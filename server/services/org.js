@@ -1,6 +1,6 @@
 import express from 'express';
-import Organization from '../db/models/Organization.js';
-import Role from '../db/models/Role.js';
+import Organization from '../models/Organization.js';
+import Role from '../models/Role.js';
 
 const router = express.Router();
 

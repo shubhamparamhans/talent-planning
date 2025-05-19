@@ -1,5 +1,5 @@
 import { openai } from '../utils/openaiClient.js';
-import User from '../db/models/User.js';
+import User from '../models/User.js';
 
 export async function createUserProfileFromPDF(resumeText) {
   const prompt = `

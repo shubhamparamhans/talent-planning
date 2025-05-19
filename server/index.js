@@ -1,16 +1,18 @@
 // --- Step 2: server/index.js ---
 import express from 'express';
 import dotenv from 'dotenv';
-import { performanceReviewHandler, skillGapHandler,careerPathHandler } from './services/mcpResolver.js';
+import { performanceReviewHandler, skillGapHandler, careerPathHandler } from './services/mcpResolver.js';
 import { connectDB } from './db/connect.js';
 import authRoutes from './services/auth.js';
 import resumeRoutes from './services/resume.js';
 import hierarchyRoutes from './services/hierarchy.js';
 import orgRoutes from './services/org.js';
+import userRoutes from './services/users.js';
+import agentRoutes from './services/agents.js';
 
 
-connectDB(); 
 dotenv.config();
+connectDB();
 const app = express();
 app.use(express.json());
 
@@ -19,6 +21,8 @@ app.use('/api/auth', authRoutes);
 app.use('/api/resume', resumeRoutes);
 app.use('/api/hierarchy', hierarchyRoutes);
 app.use('/api/org', orgRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/agents', agentRoutes);
 
 app.post('/api/review', performanceReviewHandler);
 app.post('/api/skillgap', skillGapHandler);
