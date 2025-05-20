@@ -13,6 +13,17 @@ import orgRoutes from './services/org.js';
 import userRoutes from './services/users.js';
 import agentRoutes from './services/agents.js';
 
+// Phase 3 services
+import careerRoutes from './services/career.js';
+import developmentPlanRoutes from './services/developmentPlan.js';
+import coursesRoutes from './services/courses.js';
+import employeeTrainingRoutes from './services/employeeTraining.js';
+import successionPlansRoutes from './services/successionPlans.js';
+import teamsRoutes from './services/teams.js';
+import rolesRoutes from './services/roles.js';
+import analyticsRoutes from './services/analytics.js';
+import reportsRoutes from './services/reports.js';
+
 
 dotenv.config();
 connectDB();
@@ -29,6 +40,24 @@ app.use('/api/reviews', reviewRoutes);
 app.use('/api/feedback', feedbackRoutes);
 app.use('/api/skills', skillsRoutes);
 app.use('/api/users/:userId/skills', employeeSkillsRoutes);
+
+// Career development & planning
+app.use('/api/users/:userId/career', careerRoutes);
+app.use('/api/users/:userId/development-plan', developmentPlanRoutes);
+
+// Training courses & assignments
+app.use('/api/courses', coursesRoutes);
+app.use('/api/users/:userId/training', employeeTrainingRoutes);
+
+// Succession planning & teams
+app.use('/api/succession-plans', successionPlansRoutes);
+app.use('/api/teams', teamsRoutes);
+app.use('/api/roles', rolesRoutes);
+
+// Analytics & reporting
+app.use('/api/analytics', analyticsRoutes);
+app.use('/api/reports', reportsRoutes);
+
 app.use('/api/agents', agentRoutes);
 
 app.listen(3000, () => {

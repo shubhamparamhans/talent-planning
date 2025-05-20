@@ -1,6 +1,8 @@
 import express from 'express';
 import User from '../models/User.js';
 import { authMiddleware } from './auth.js';
+import AgentInteraction from '../models/AgentInteraction.js';
+import SuccessionPlan from '../models/SuccessionPlan.js';
 
 const router = express.Router();
 
@@ -23,6 +25,26 @@ router.put('/me', authMiddleware, async (req, res) => {
     res.json(user);
   } catch (err) {
     res.status(400).json({ error: err.message });
+  }
+});
+
+// Get all agent insights for a user
+router.get('/:id/agent-insights', async (req, res) => {
+  try {
+    const insights = await AgentInteraction.find({ employeeId: req.params.id });
+    res.json(insights);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Get succession plans where user is a candidate
+router.get('/:id/succession-candidates', async (req, res) => {
+  try {
+    const plans = await SuccessionPlan.find({ 'candidates.employeeId': req.params.id });
+    res.json(plans);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
 });
 

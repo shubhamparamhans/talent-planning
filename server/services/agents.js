@@ -96,4 +96,29 @@ router.post('/career-path/suggest', async (req, res) => {
   }
 });
 
+// Advanced agent endpoints (Phase 3)
+router.post('/promotion-advisor/evaluate', async (req, res) => {
+  res.status(501).json({ error: 'Not implemented' });
+});
+
+router.post('/training-recommender/suggest', async (req, res) => {
+  res.status(501).json({ error: 'Not implemented' });
+});
+
+router.post('/retention-risk/assess', async (req, res) => {
+  res.status(501).json({ error: 'Not implemented' });
+});
+
+router.post('/team-fit/evaluate', async (req, res) => {
+  res.status(501).json({ error: 'Not implemented' });
+});
+
+router.post('/feedback-summarizer/summarize', async (req, res) => {
+  res.status(501).json({ error: 'Not implemented' });
+});
+
+router.post('/goal-coach/recommend', async (req, res) => {
+  res.status(501).json({ error: 'Not implemented' });
+});
+
 export default router;
