@@ -8,3 +8,4 @@
 | **CareerPathAgent**            | Suggests future career paths based on strengths & interests      |
 | **TeamFitAgent**               | Evaluates how well an employee fits into current or target teams |
 | **360FeedbackSummarizerAgent** | Summarizes peer/manager feedback from review cycles              |
+| **GoalCoachAgent**             | Recommends personalized goals based on aspirations and performance summary |
