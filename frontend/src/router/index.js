@@ -4,6 +4,7 @@ import HRDashboard from '../views/HRDashboard.vue';
 import ManagerDashboard from '../views/ManagerDashboard.vue';
 import CareerDevelopment from '../views/CareerDevelopment.vue';
 import SuccessionPlanning from '../views/SuccessionPlanning.vue';
+import RolesManagement from '../views/RolesManagement.vue';
 import AdvancedAgentCapabilities from '../views/AdvancedAgentCapabilities.vue';
 import AnalyticsReporting from '../views/AnalyticsReporting.vue';
 import Courses from '../views/Courses.vue';
@@ -53,6 +54,12 @@ const routes = [
     path: '/succession-planning',
     name: 'SuccessionPlanning',
     component: SuccessionPlanning,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/roles',
+    name: 'RolesManagement',
+    component: RolesManagement,
     meta: { requiresAuth: true }
   },
   {
